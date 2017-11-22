@@ -18,7 +18,7 @@ class ShopsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "The List"
+        title = "Shops"
 
     }
     
@@ -35,47 +35,25 @@ class ShopsTableViewController: UITableViewController {
             appDelegate.persistentContainer.viewContext
         
         //2
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Shop")
+        //let fetchRequest2 = NSFetchRequest<NSManagedObject>(entityName: "Shop")
+        
+        let fetchRequest : NSFetchRequest<Shop> = Shop.fetchRequest()
         
         //3
         do {
             shops = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("No ha sido posible recuperar la info. \(error), \(error.userInfo)")
         }
+        
+        tableView.reloadData()
     }
     
-    func save(name: String) {
-        
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        // 1
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        // 2
-        let entity =
-            NSEntityDescription.entity(forEntityName: "Shop",
-                                       in: managedContext)!
-        
-        let shop = NSManagedObject(entity: entity,
-                                   insertInto: managedContext)
-        
-        // 3
-        shop.setValue(name, forKeyPath: "name")
-        
-        // 4
-        do {
-            try managedContext.save()
-            shops.append(shop)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+    @IBAction func fromDetalleView (segue: UIStoryboardSegue!) {
+        viewWillAppear(true)
+        self.tableView.reloadData()
     }
+    
 
     // MARK: - Table view data source
 
@@ -98,8 +76,15 @@ class ShopsTableViewController: UITableViewController {
         cell.labelShops.text =
             shop.value(forKeyPath: "name") as? String
         
-        cell.imageShops.image = UIImage(named:("logo"))
+        if let aux = shop.value(forKeyPath:"logo") as? Data {
+            cell.imageShops.image = UIImage(data:aux)
+            
+        } else {
+            cell.imageShops.image = UIImage(named: "default")
+        }
+    
         return cell
     }
-
+    
+    
 }

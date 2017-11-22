@@ -13,7 +13,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -42,20 +41,20 @@
                         <outlet property="tableView" destination="kjf-5o-I0v" id="Zvv-Ij-utB"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="790" y="-635"/>
         </scene>
         <!--Shops Table View Controller-->
         <scene sceneID="btN-11-Xmm">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="chk-kd-yg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="nic-Ij-eC9" customClass="ShopsTableViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OSz-Pu-gxv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShopsTableViewCell" id="DzG-tJ-LSw" customClass="ShopsTableViewCell" customModule="ShoppingList" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShopsTableViewCell" editingAccessoryType="disclosureIndicator" id="DzG-tJ-LSw" customClass="ShopsTableViewCell" customModule="ShoppingList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DzG-tJ-LSw" id="oMk-9f-kA9">
@@ -87,13 +86,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="3j7-5i-hHE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="KLa-RY-Imv"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iEj-zd-Xln">
                             <connections>
-                                <segue destination="0HR-Cl-fyC" kind="show" id="7Lg-nc-tNW"/>
+                                <segue destination="8Qc-US-FLN" kind="presentation" id="Zar-JO-jfF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chk-kd-yg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="983" y="122"/>
         </scene>
@@ -105,7 +106,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcI-Rj-VaQ">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="fcI-Rj-VaQ">
                                 <rect key="frame" x="67" y="84" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
@@ -127,17 +128,38 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtw-Xf-6kH">
+                                <rect key="frame" x="164" y="347" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonImagen:" destination="0HR-Cl-fyC" eventType="touchUpInside" id="cX6-Zh-CBs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="T6B-L8-RMn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="CoL-Q2-MOI"/>
+                    <navigationItem key="navigationItem" id="CoL-Q2-MOI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="saq-OV-jea">
+                            <connections>
+                                <action selector="cancelar:" destination="0HR-Cl-fyC" id="UBZ-c2-sVM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bcG-LL-FHh">
+                            <connections>
+                                <segue destination="7SU-jl-TOY" kind="unwind" unwindAction="fromDetalleViewWithSegue:" id="dTV-5Y-pS0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageDetalle" destination="fcI-Rj-VaQ" id="S0u-pd-dYw"/>
+                        <outlet property="saveBtn" destination="bcG-LL-FHh" id="m3W-nC-4CB"/>
                         <outlet property="textFieldDetalle" destination="cmu-rl-aYe" id="L7v-Cg-LTr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3St-tZ-nOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7SU-jl-TOY" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="VAa-nK-im6">
                     <connections>
                         <action selector="seleccionImagen:" destination="0HR-Cl-fyC" id="qnF-j3-FKU"/>
@@ -149,13 +171,6 @@
         <!--Principal View Controller-->
         <scene sceneID="rOO-8z-CLk">
             <objects>
-                <tapGestureRecognizer id="iyp-2V-YOH">
-                    <connections>
-                        <action selector="entradaPrincipal:" destination="bh4-cv-dSL" id="mcu-e0-yN9"/>
-                        <segue destination="jsL-vT-HCm" kind="show" id="18O-VS-rXb"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wRo-4q-f0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bh4-cv-dSL" customClass="PrincipalViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mCJ-Q8-Kdy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -181,13 +196,19 @@
                         </connections>
                     </view>
                 </viewController>
+                <tapGestureRecognizer id="iyp-2V-YOH">
+                    <connections>
+                        <action selector="entradaPrincipal:" destination="bh4-cv-dSL" id="mcu-e0-yN9"/>
+                        <segue destination="jsL-vT-HCm" kind="show" id="18O-VS-rXb"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRo-4q-f0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1044" y="121.88905547226388"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hJV-zZ-ICk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5k1-pW-VS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4ub-pp-lgW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q9C-4t-9Tv">
@@ -199,13 +220,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="UxL-hj-SDj"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5k1-pW-VS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-182" y="-635"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pjb-Om-cx9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lbz-Ho-H9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jsL-vT-HCm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RB1-0f-qhT">
@@ -217,11 +238,31 @@
                         <segue destination="nic-Ij-eC9" kind="relationship" relationship="rootViewController" id="hdy-hV-cA0"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lbz-Ho-H9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-7" y="122"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NC9-8i-Otz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Qc-US-FLN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="70P-xK-EdY">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0HR-Cl-fyC" kind="relationship" relationship="rootViewController" id="4mu-Jw-CxF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V0Z-0y-0MR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2067.1999999999998" y="121.4392803598201"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="default" width="225" height="225"/>
         <image name="logo" width="320" height="200"/>
     </resources>
 </document>

@@ -17,6 +17,12 @@ class ShopsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        
+        imageShops.layer.cornerRadius = imageShops.frame.size.width / 2
+        imageShops.clipsToBounds = true
+        imageShops.layer.borderWidth = 1.0
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
