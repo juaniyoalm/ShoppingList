@@ -14,6 +14,10 @@
 		B468698C1FC4706D009FFF4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B468698B1FC4706D009FFF4F /* Assets.xcassets */; };
 		B468698F1FC4706D009FFF4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B468698D1FC4706D009FFF4F /* LaunchScreen.storyboard */; };
 		B468699A1FC4706E009FFF4F /* ShoppingListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46869991FC4706E009FFF4F /* ShoppingListTests.swift */; };
+		B46869A71FC4B79C009FFF4F /* PrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46869A61FC4B79C009FFF4F /* PrincipalViewController.swift */; };
+		B46869A91FC4D684009FFF4F /* ShopsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46869A81FC4D684009FFF4F /* ShopsTableViewCell.swift */; };
+		B46869AB1FC4D903009FFF4F /* ShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46869AA1FC4D903009FFF4F /* ShopsTableViewController.swift */; };
+		B4AB6F441FC4F2D0008314CF /* DetalleShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB6F431FC4F2D0008314CF /* DetalleShopViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 		B46869951FC4706E009FFF4F /* ShoppingListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppingListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46869991FC4706E009FFF4F /* ShoppingListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTests.swift; sourceTree = "<group>"; };
 		B468699B1FC4706E009FFF4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B46869A61FC4B79C009FFF4F /* PrincipalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalViewController.swift; sourceTree = "<group>"; };
+		B46869A81FC4D684009FFF4F /* ShopsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsTableViewCell.swift; sourceTree = "<group>"; };
+		B46869AA1FC4D903009FFF4F /* ShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsTableViewController.swift; sourceTree = "<group>"; };
+		B4AB6F431FC4F2D0008314CF /* DetalleShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleShopViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +87,13 @@
 		B46869801FC4706D009FFF4F /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				B4AB6F431FC4F2D0008314CF /* DetalleShopViewController.swift */,
 				B46869811FC4706D009FFF4F /* AppDelegate.swift */,
 				B46869831FC4706D009FFF4F /* ViewController.swift */,
+				B46869A61FC4B79C009FFF4F /* PrincipalViewController.swift */,
 				B46869851FC4706D009FFF4F /* Main.storyboard */,
+				B46869A81FC4D684009FFF4F /* ShopsTableViewCell.swift */,
+				B46869AA1FC4D903009FFF4F /* ShopsTableViewController.swift */,
 				B468698B1FC4706D009FFF4F /* Assets.xcassets */,
 				B468698D1FC4706D009FFF4F /* LaunchScreen.storyboard */,
 				B46869901FC4706D009FFF4F /* Info.plist */,
@@ -202,9 +214,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B46869A91FC4D684009FFF4F /* ShopsTableViewCell.swift in Sources */,
+				B4AB6F441FC4F2D0008314CF /* DetalleShopViewController.swift in Sources */,
 				B468698A1FC4706D009FFF4F /* ShoppingList.xcdatamodeld in Sources */,
+				B46869A71FC4B79C009FFF4F /* PrincipalViewController.swift in Sources */,
 				B46869841FC4706D009FFF4F /* ViewController.swift in Sources */,
 				B46869821FC4706D009FFF4F /* AppDelegate.swift in Sources */,
+				B46869AB1FC4D903009FFF4F /* ShopsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="esta_en" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" syncable="YES"/>
+    </entity>
+    <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contiene" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="pertenece_a" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" syncable="YES"/>
+    </entity>
+    <entity name="Shop" representedClassName="Shop" syncable="YES" codeGenerationType="class">
+        <attribute name="logo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contiene" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="List" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Shop" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="List" positionX="-54" positionY="0" width="128" height="90"/>
+        <element name="Item" positionX="-36" positionY="9" width="128" height="75"/>
+    </elements>
 </model>
