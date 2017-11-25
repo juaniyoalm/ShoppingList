@@ -86,7 +86,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="3j7-5i-hHE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="KLa-RY-Imv"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iEj-zd-Xln">
                             <connections>
                                 <segue destination="8Qc-US-FLN" kind="presentation" id="Zar-JO-jfF"/>

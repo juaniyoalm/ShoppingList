@@ -15,8 +15,14 @@ class ShopsTableViewController: UITableViewController {
     
     var shops: [NSManagedObject] = []
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = editButtonItem
+        
+        
         
         title = "Shops"
 
@@ -86,5 +92,34 @@ class ShopsTableViewController: UITableViewController {
         return cell
     }
     
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    // BORRADO DE SHOPS
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle != .delete {return}
+        
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        managedContext.delete(shops[indexPath.row] as NSManagedObject)
+
+        
+        do {
+            try managedContext.save()
+            shops.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            
+        } catch let error as NSError {
+            print("Error al eliminar: \(error)")
+        }
+    }
     
 }
