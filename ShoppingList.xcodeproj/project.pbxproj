@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40B03551FCCB4F30013CC95 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B03541FCCB4F30013CC95 /* ItemTableViewCell.swift */; };
+		B40B03571FCCB54F0013CC95 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B03561FCCB54F0013CC95 /* ItemTableViewController.swift */; };
+		B40B03591FCE189C0013CC95 /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B40B03581FCE12A90013CC95 /* intro.mp4 */; };
+		B40B035B1FCE1BF70013CC95 /* intro2.mov in Resources */ = {isa = PBXBuildFile; fileRef = B40B035A1FCE1BF70013CC95 /* intro2.mov */; };
 		B46869821FC4706D009FFF4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46869811FC4706D009FFF4F /* AppDelegate.swift */; };
 		B46869841FC4706D009FFF4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46869831FC4706D009FFF4F /* ViewController.swift */; };
 		B46869871FC4706D009FFF4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46869851FC4706D009FFF4F /* Main.storyboard */; };
@@ -31,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B40B03541FCCB4F30013CC95 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		B40B03561FCCB54F0013CC95 /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		B40B03581FCE12A90013CC95 /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
+		B40B035A1FCE1BF70013CC95 /* intro2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = intro2.mov; sourceTree = "<group>"; };
 		B468697E1FC4706D009FFF4F /* ShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46869811FC4706D009FFF4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B46869831FC4706D009FFF4F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,8 +100,12 @@
 				B46869831FC4706D009FFF4F /* ViewController.swift */,
 				B46869A61FC4B79C009FFF4F /* PrincipalViewController.swift */,
 				B46869851FC4706D009FFF4F /* Main.storyboard */,
+				B40B03561FCCB54F0013CC95 /* ItemTableViewController.swift */,
 				B46869A81FC4D684009FFF4F /* ShopsTableViewCell.swift */,
+				B40B03541FCCB4F30013CC95 /* ItemTableViewCell.swift */,
 				B46869AA1FC4D903009FFF4F /* ShopsTableViewController.swift */,
+				B40B03581FCE12A90013CC95 /* intro.mp4 */,
+				B40B035A1FCE1BF70013CC95 /* intro2.mov */,
 				B468698B1FC4706D009FFF4F /* Assets.xcassets */,
 				B468698D1FC4706D009FFF4F /* LaunchScreen.storyboard */,
 				B46869901FC4706D009FFF4F /* Info.plist */,
@@ -194,7 +206,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40B03591FCE189C0013CC95 /* intro.mp4 in Resources */,
 				B468698F1FC4706D009FFF4F /* LaunchScreen.storyboard in Resources */,
+				B40B035B1FCE1BF70013CC95 /* intro2.mov in Resources */,
 				B468698C1FC4706D009FFF4F /* Assets.xcassets in Resources */,
 				B46869871FC4706D009FFF4F /* Main.storyboard in Resources */,
 			);
@@ -215,9 +229,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B46869A91FC4D684009FFF4F /* ShopsTableViewCell.swift in Sources */,
+				B40B03571FCCB54F0013CC95 /* ItemTableViewController.swift in Sources */,
 				B4AB6F441FC4F2D0008314CF /* DetalleShopViewController.swift in Sources */,
 				B468698A1FC4706D009FFF4F /* ShoppingList.xcdatamodeld in Sources */,
 				B46869A71FC4B79C009FFF4F /* PrincipalViewController.swift in Sources */,
+				B40B03551FCCB4F30013CC95 /* ItemTableViewCell.swift in Sources */,
 				B46869841FC4706D009FFF4F /* ViewController.swift in Sources */,
 				B46869821FC4706D009FFF4F /* AppDelegate.swift in Sources */,
 				B46869AB1FC4D903009FFF4F /* ShopsTableViewController.swift in Sources */,

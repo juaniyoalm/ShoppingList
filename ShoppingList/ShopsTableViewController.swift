@@ -14,16 +14,19 @@ class ShopsTableViewController: UITableViewController {
     // MARK: Atributos
     
     var shops: [NSManagedObject] = []
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var managedContext: NSManagedObjectContext!
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        managedContext = appDelegate.persistentContainer.viewContext
         navigationItem.leftBarButtonItem = editButtonItem
         
+        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "backTable")!)
         
-        
+
         title = "Shops"
 
     }
@@ -31,16 +34,6 @@ class ShopsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //1
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        //2
         //let fetchRequest2 = NSFetchRequest<NSManagedObject>(entityName: "Shop")
         
         let fetchRequest : NSFetchRequest<Shop> = Shop.fetchRequest()
@@ -79,6 +72,9 @@ class ShopsTableViewController: UITableViewController {
             tableView.dequeueReusableCell(withIdentifier: "ShopsTableViewCell",
                                           for: indexPath) as! ShopsTableViewCell
 
+        //cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        
         cell.labelShops.text =
             shop.value(forKeyPath: "name") as? String
         
@@ -97,16 +93,25 @@ class ShopsTableViewController: UITableViewController {
         return true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier != "segueTableItem" {return}
+        
+        let dest = segue.destination as! ItemTableViewController
+        
+        let indexPath = tableView.indexPathForSelectedRow!
+        
+        let selectObject = shops[indexPath.row] as! Shop
+        
+        dest.shop = selectObject
+        
+        print("VARIABLE PASADA")
+        
+    }
+
     
     // BORRADO DE SHOPS
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle != .delete {return}
-        
-
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
         
         managedContext.delete(shops[indexPath.row] as NSManagedObject)
 

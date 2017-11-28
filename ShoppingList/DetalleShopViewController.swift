@@ -21,10 +21,21 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
     var shops: [NSManagedObject] = []
     let imagePickerCtrl = UIImagePickerController()
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var managedContext: NSManagedObjectContext!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        managedContext = appDelegate.persistentContainer.viewContext
         textFieldDetalle.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 
@@ -52,11 +63,7 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     
     
     // MARK: Segues
@@ -92,16 +99,7 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     func save(name: String, image: UIImage) {
         
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        // 1
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        // 2
+
         let entity =
             NSEntityDescription.entity(forEntityName: "Shop",
                                        in: managedContext)!
@@ -113,7 +111,7 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
         shop.setValue(name, forKeyPath: "name")
         let imageData = UIImagePNGRepresentation(image)
         shop.setValue(imageData, forKeyPath: "logo")
-        
+       
         // 4
         do {
             try managedContext.save()
