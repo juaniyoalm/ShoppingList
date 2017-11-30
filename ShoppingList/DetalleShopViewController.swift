@@ -46,6 +46,15 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func seleccionImagen(_ sender: UITapGestureRecognizer) {
+        textFieldDetalle.resignFirstResponder()
+        imagePickerCtrl.delegate = self
+        imagePickerCtrl.sourceType = .photoLibrary
+        
+        self.present(imagePickerCtrl, animated: true, completion: nil)
+    }
+    
+    
     
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
@@ -64,21 +73,22 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     
-    @IBAction func seleccionImagen(_ sender: UITapGestureRecognizer) {
-        textFieldDetalle.resignFirstResponder()
-        imagePickerCtrl.delegate = self
-        imagePickerCtrl.sourceType = .photoLibrary
-        
-        self.present(imagePickerCtrl, animated: true, completion: nil)
-    }
-    
     
     
     // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (sender as AnyObject? !== saveBtn) {return}
-        self.save(name: textFieldDetalle.text!, image: imageDetalle.image!)
+        
+        if self.comprobarShop(nameShop: textFieldDetalle.text!) {
+            self.save(name: textFieldDetalle.text!, image: imageDetalle.image!)
+
+        } else {
+            let alert = UIAlertController(title: "Aviso", message: "El comercio ya existe",preferredStyle: .alert)
+            self.present(alert, animated: true) {
+            }
+        }
+
     }
     
     
@@ -107,26 +117,41 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     func save(name: String, image: UIImage) {
         
-
         let entity =
             NSEntityDescription.entity(forEntityName: "Shop",
                                        in: managedContext)!
         
         let shop = NSManagedObject(entity: entity,
                                    insertInto: managedContext)
-        
-        // 3
+
         shop.setValue(name, forKeyPath: "name")
         let imageData = UIImagePNGRepresentation(image)
         shop.setValue(imageData, forKeyPath: "logo")
        
-        // 4
         do {
             try managedContext.save()
             shops.append(shop)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+    }
+    
+    
+    func comprobarShop(nameShop: String) -> Bool {
+        
+        var result: [Shop]
+        
+        let fetchRequest : NSFetchRequest<Shop> = Shop.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", nameShop)
+        
+        do {
+            result = try managedContext.fetch(fetchRequest)
+            if result.count == 0 {return true}
+        } catch let error as NSError {
+            print("No ha sido posible recuperar la info. \(error), \(error.userInfo)")
+        }
+        
+        return false
     }
 
 }

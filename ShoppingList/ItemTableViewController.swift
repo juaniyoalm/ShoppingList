@@ -21,6 +21,8 @@ class ItemTableViewController: UITableViewController {
         super.viewDidLoad()
         managedContext = appDelegate.persistentContainer.viewContext
         
+        title = shop.name!
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -97,12 +99,10 @@ class ItemTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.row]
-        let cell =
-            tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell",
-                                          for: indexPath) as! ItemTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell",
+                                                 for: indexPath) as! ItemTableViewCell
         
         cell.labelItemCell.text = item.value(forKeyPath: "name") as? String
-        
         
         return cell
     }
@@ -115,7 +115,6 @@ class ItemTableViewController: UITableViewController {
         
         managedContext.delete(items[indexPath.row] as NSManagedObject)
         
-        
         do {
             try managedContext.save()
             items.remove(at: indexPath.row)
@@ -125,6 +124,69 @@ class ItemTableViewController: UITableViewController {
         } catch let error as NSError {
             print("Error al eliminar: \(error)")
         }
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            
+            self.managedContext.delete(self.items[index.row] as NSManagedObject)
+            
+            do {
+                try self.managedContext.save()
+                self.items.remove(at: index.row)
+                tableView.deleteRows(at: [index], with: .fade)
+                tableView.reloadData()
+                
+            } catch let error as NSError {
+                print("Error al eliminar: \(error)")
+            }
+        }
+        
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            
+            let alert = UIAlertController(title: "Mod Item", message: "", preferredStyle: .alert)
+            
+            let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
+                guard let textField = alert.textFields?.first,
+                    let nameToSave = textField.text else {return}
+                
+                if self.comprobarItem(nameItem: nameToSave) {
+                    let modItem = self.items[index.row] as NSManagedObject
+                    modItem.setValue(nameToSave, forKey: "name")
+                    do {
+                        try self.managedContext.save()
+                        tableView.reloadData()
+                        
+                    } catch let error as NSError {
+                        print("Error al eliminar: \(error)")
+                    }
+                    self.tableView.reloadData()
+    
+                } else {
+                    let alert = UIAlertController(title: "Aviso", message: "El item ya existe",preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in}
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true) {
+                    }
+                }
+  
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .default)
+            
+            alert.addTextField()
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true)
+            
+        }
+        edit.backgroundColor = .blue
+        
+        return [edit, delete]
     }
     
     

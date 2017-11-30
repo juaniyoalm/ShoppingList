@@ -13,7 +13,7 @@
         <!--Shops Table View Controller-->
         <scene sceneID="btN-11-Xmm">
             <objects>
-                <tableViewController id="nic-Ij-eC9" customClass="ShopsTableViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nic-Ij-eC9" customClass="ShopsTableViewController" customModule="ShoppingList" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OSz-Pu-gxv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,7 +54,7 @@
                     <navigationItem key="navigationItem" id="3j7-5i-hHE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iEj-zd-Xln">
                             <connections>
-                                <segue destination="8Qc-US-FLN" kind="presentation" id="Zar-JO-jfF"/>
+                                <segue destination="8Qc-US-FLN" kind="presentation" identifier="shopToDetail" id="Zar-JO-jfF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -123,7 +123,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2460" y="-189"/>
+            <point key="canvasLocation" x="2578" y="104"/>
         </scene>
         <!--Principal View Controller-->
         <scene sceneID="rOO-8z-CLk">
@@ -202,7 +202,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0Z-0y-0MR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1620" y="-189"/>
+            <point key="canvasLocation" x="1620" y="-217"/>
         </scene>
         <!--Title-->
         <scene sceneID="3AC-bx-TnW">

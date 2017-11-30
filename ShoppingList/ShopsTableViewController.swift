@@ -62,7 +62,6 @@ class ShopsTableViewController: UITableViewController {
         
         managedContext.delete(shops[indexPath.row] as NSManagedObject)
         
-        
         do {
             try managedContext.save()
             shops.remove(at: indexPath.row)
@@ -86,23 +85,17 @@ class ShopsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let shop = shops[indexPath.row]
-        let cell =
-            tableView.dequeueReusableCell(withIdentifier: "ShopsTableViewCell",
-                                          for: indexPath) as! ShopsTableViewCell
-
-        //cell.backgroundColor = UIColor.clear
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ShopsTableViewCell",
+                                                 for: indexPath) as! ShopsTableViewCell
         cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         
-        cell.labelShops.text =
-            shop.value(forKeyPath: "name") as? String
+        cell.labelShops.text = shop.value(forKeyPath: "name") as? String
         
         if let aux = shop.value(forKeyPath:"logo") as? Data {
             cell.imageShops.image = UIImage(data:aux)
-            
         } else {
             cell.imageShops.image = UIImage(named: "default")
         }
-    
         return cell
     }
     
@@ -125,9 +118,6 @@ class ShopsTableViewController: UITableViewController {
         let selectObject = shops[indexPath.row] as! Shop
         
         dest.shop = selectObject
-        
-        print("VARIABLE PASADA")
-        
     }
 
 }
