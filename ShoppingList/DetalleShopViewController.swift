@@ -22,14 +22,15 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
     let imagePickerCtrl = UIImagePickerController()
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     var managedContext: NSManagedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         managedContext = appDelegate.persistentContainer.viewContext
         textFieldDetalle.delegate = self
-        // Do any additional setup after loading the view.
+        
+        saveBtn.isEnabled = false
+        textFieldDetalle.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
     }
     
     
@@ -41,16 +42,25 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
 
     // MARK: Actions
     
-    @IBAction func buttonImagen(_ sender: UIButton) {
-        let imagePickerCtrl = UIImagePickerController()
-        imagePickerCtrl.delegate = self
-        imagePickerCtrl.sourceType = .photoLibrary
-        
-        self.present(imagePickerCtrl, animated: true, completion: nil)
-    }
-    
     @IBAction func cancelar(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        // Hide the keyboard.
+        textFieldDetalle.resignFirstResponder()
+        return true
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        saveBtn.isEnabled = textFieldDetalle.hasText
+    }
+    
+    @objc func textFieldDidChange(textField: UITextField) {
+        saveBtn.isEnabled = textFieldDetalle.hasText
     }
     
     
@@ -62,8 +72,6 @@ class DetalleShopViewController: UIViewController, UITextFieldDelegate, UIImageP
         self.present(imagePickerCtrl, animated: true, completion: nil)
     }
     
-    
-
     
     
     // MARK: Segues

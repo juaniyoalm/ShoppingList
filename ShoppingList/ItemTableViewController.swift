@@ -55,8 +55,18 @@ class ItemTableViewController: UITableViewController {
                     return
             }
             
-            self.save(name: nameToSave)
-            self.tableView.reloadData()
+            if self.comprobarItem(nameItem: nameToSave) {
+                self.save(name: nameToSave)
+                self.tableView.reloadData()
+            } else {
+                let alert = UIAlertController(title: "Aviso", message: "El item ya existe",preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in}
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true) {
+                }
+            }
+            
+            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -73,28 +83,6 @@ class ItemTableViewController: UITableViewController {
     
     
     
-    // MARK: Core Data Functions
-    
-    func save(name: String) {
-  
-        let itemEntity = NSEntityDescription.entity(forEntityName: "Item", in: managedContext)
-        
-        let item = Item(entity: itemEntity!, insertInto: managedContext)
-        
-        item.name = name
-        
-        item.esta_en = shop
-        
-        do {
-            try managedContext.save()
-            items.append(item)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-
-    
-
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -138,9 +126,43 @@ class ItemTableViewController: UITableViewController {
             print("Error al eliminar: \(error)")
         }
     }
-
- 
     
-
+    
+    // MARK: Core Data Functions
+    
+    func save(name: String) {
+  
+        let itemEntity = NSEntityDescription.entity(forEntityName: "Item", in: managedContext)
+        
+        let item = Item(entity: itemEntity!, insertInto: managedContext)
+        
+        item.name = name
+        
+        item.esta_en = shop
+        
+        do {
+            try managedContext.save()
+            items.append(item)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func comprobarItem(nameItem: String) -> Bool {
+        
+        var result: [Item]
+        
+        let fetchRequest : NSFetchRequest<Item> = Item.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@ AND esta_en.name == %@", nameItem, shop.name!)
+        
+        do {
+            result = try managedContext.fetch(fetchRequest)
+            if result.count == 0 {return true}
+        } catch let error as NSError {
+            print("No ha sido posible recuperar la info. \(error), \(error.userInfo)")
+        }
+        
+        return false
+    }
 
 }

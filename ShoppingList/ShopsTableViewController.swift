@@ -34,11 +34,8 @@ class ShopsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //let fetchRequest2 = NSFetchRequest<NSManagedObject>(entityName: "Shop")
-        
         let fetchRequest : NSFetchRequest<Shop> = Shop.fetchRequest()
         
-        //3
         do {
             shops = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
@@ -48,13 +45,34 @@ class ShopsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    
+    
+    // MARK: Actions
+    
     @IBAction func fromDetalleView (segue: UIStoryboardSegue!) {
         viewWillAppear(true)
         self.tableView.reloadData()
     }
     
-
+    
+    
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        managedContext.delete(shops[indexPath.row] as NSManagedObject)
+        
+        
+        do {
+            try managedContext.save()
+            shops.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            
+        } catch let error as NSError {
+            print("Error al eliminar: \(error)")
+        }
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -93,6 +111,9 @@ class ShopsTableViewController: UITableViewController {
         return true
     }
     
+    
+    //MARK: Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier != "segueTableItem" {return}
@@ -109,22 +130,4 @@ class ShopsTableViewController: UITableViewController {
         
     }
 
-    
-    // BORRADO DE SHOPS
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        managedContext.delete(shops[indexPath.row] as NSManagedObject)
-
-        
-        do {
-            try managedContext.save()
-            shops.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadData()
-            
-        } catch let error as NSError {
-            print("Error al eliminar: \(error)")
-        }
-    }
-    
 }
